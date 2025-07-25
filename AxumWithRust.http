@@ -12,6 +12,9 @@ GET {{baseUrl}}/
 ### GET request to fetch Vehicle data
 GET {{baseUrl}}/vehicle
 
+### GET Vehicle data with query parameters
+GET {{baseUrl}}/vehicle/query?manufacturer=Toyota&name=Camry&model=Camry&year=2023
+
 ### POST request with JSON body
 POST {{baseUrl}}/vehicle
 Content-Type: {{contentType}}
@@ -22,6 +25,9 @@ Content-Type: {{contentType}}
   "model": "Camry",
   "year": 2023
 }
+
+### DELETE request to remove Vehicle data
+DELETE {{baseUrl}}/vehicle/1
 
 #### GET request with query parameters
 #GET {{baseUrl}}/users?page=1&limit=10
