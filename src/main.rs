@@ -9,6 +9,7 @@ async fn main() {
     // build our application with a single route
     let app = Router::new()
         .route("/", get(hello))
+        .route("/vehicle/all", get(vehicle_get_all))
         .route("/vehicle/{id}", get(vehicle_get))
         .route("/vehicle/query", get(vehicle_get_by_query))
         .route("/vehicle", post(vehicle_post))

@@ -9,6 +9,9 @@
 ### GET request to root endpoint
 GET {{baseUrl}}/
 
+### GET request to fetch All Vehicle data
+GET {{baseUrl}}/vehicle/all
+
 ### GET request to fetch Vehicle data
 GET {{baseUrl}}/vehicle/1
 

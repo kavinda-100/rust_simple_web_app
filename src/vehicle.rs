@@ -13,6 +13,27 @@ pub struct Vehicle {
     model: String,
     year: u32,
 }
+
+// get all vehicles
+pub async fn vehicle_get_all() -> impl IntoResponse {
+    // Log the request for all vehicles
+    println!("Received request for all vehicles");
+    let vehicle_names = vec!["BMW", "Audi", "Mercedes", "Toyota", "Honda"];
+    let vehicle_models = vec!["CS", "A4", "C-Class", "Camry", "Civic"];
+    let mut vehicles: Vec<Vehicle> = Vec::new();
+    for (i, name) in vehicle_names.iter().enumerate() {
+        vehicles.push(Vehicle {
+            id: Some(uuid::Uuid::new_v4().to_string()),
+            manufacturer: name.to_string(),
+            name: name.to_string(),
+            model: vehicle_models[i].to_string(),
+            year: 2024,
+        });
+    }
+    // Return the list of vehicles as JSON
+    (StatusCode::OK, Json(vehicles))
+}
+
 // get the vehicle details
 pub async fn vehicle_get(Path(id): Path<String>) -> impl IntoResponse {
     // Log the received vehicle ID
