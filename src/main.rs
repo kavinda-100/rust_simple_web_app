@@ -1,13 +1,14 @@
 use axum::{routing::get, Router};
 use axum::routing::post;
+mod vehicle;
 
 #[tokio::main]
 async fn main() {
     // build our application with a single route
     let app = Router::new()
         .route("/", get(hello))
-        .route("/vehicle", get(vehicle_get))
-        .route("/vehicle", post(vehicle_post));
+        .route("/vehicle", get(vehicle::vehicle_get))
+        .route("/vehicle", post(vehicle::vehicle_post));
 
     // run our app with hyper, listening globally on port 5000
     let listener = tokio::net::TcpListener::bind("0.0.0.0:5000").await.unwrap();
@@ -21,5 +22,5 @@ async fn main() {
 async fn hello() -> &'static str {
     "Hello, World from Axum With Rust! 🦀"
 }
-async fn vehicle_get() {}
-async fn vehicle_post() {}
+
+

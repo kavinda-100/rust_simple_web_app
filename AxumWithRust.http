@@ -10,6 +10,9 @@
 GET {{baseUrl}}/
 
 
+### GET request to fetch Vehicle data
+GET {{baseUrl}}/vehicle
+
 ### GET request with query parameters
 GET {{baseUrl}}/users?page=1&limit=10
 
