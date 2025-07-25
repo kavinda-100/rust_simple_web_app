@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/AxumWithRust.http">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/AxumWithRust.http" />
+              <option name="originalContent" value="### AxumWithRust.http&#10;### This file contains HTTP requests for testing an Axum server built with Rust.&#10;&#10;### Base URL&#10;baseUrl http://localhost:5000&#10;&#10;### GET request to example server&#10;GET /&#10;&#10;###" />
+              <option name="updatedContent" value="### AxumWithRust.http&#10;### This file contains HTTP requests for testing an Axum server built with Rust.&#10;&#10;### Variables&#10;@baseUrl = http://localhost:5000&#10;@contentType = application/json&#10;&#10;### GET request to root endpoint&#10;GET {{baseUrl}}/&#10;&#10;### GET request with query parameters&#10;GET {{baseUrl}}/users?page=1&amp;limit=10&#10;&#10;### GET request with headers&#10;GET {{baseUrl}}/protected&#10;Authorization: Bearer your-token-here&#10;Accept: application/json&#10;&#10;### POST request with JSON body&#10;POST {{baseUrl}}/users&#10;Content-Type: {{contentType}}&#10;&#10;{&#10;  &quot;name&quot;: &quot;John Doe&quot;,&#10;  &quot;email&quot;: &quot;john@example.com&quot;,&#10;  &quot;age&quot;: 30&#10;}&#10;&#10;### POST request with form data&#10;POST {{baseUrl}}/login&#10;Content-Type: application/x-www-form-urlencoded&#10;&#10;username=testuser&amp;password=testpass&#10;&#10;### PUT request to update resource&#10;PUT {{baseUrl}}/users/1&#10;Content-Type: {{contentType}}&#10;Authorization: Bearer your-token-here&#10;&#10;{&#10;  &quot;name&quot;: &quot;John Smith&quot;,&#10;  &quot;email&quot;: &quot;johnsmith@example.com&quot;,&#10;  &quot;age&quot;: 31&#10;}&#10;&#10;### PATCH request for partial update&#10;PATCH {{baseUrl}}/users/1&#10;Content-Type: {{contentType}}&#10;&#10;{&#10;  &quot;age&quot;: 32&#10;}&#10;&#10;### DELETE request&#10;DELETE {{baseUrl}}/users/1&#10;Authorization: Bearer your-token-here&#10;&#10;### POST request with file upload (multipart)&#10;POST {{baseUrl}}/upload&#10;Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW&#10;&#10;------WebKitFormBoundary7MA4YWxkTrZu0gW&#10;Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;test.txt&quot;&#10;Content-Type: text/plain&#10;&#10;File content here&#10;------WebKitFormBoundary7MA4YWxkTrZu0gW--&#10;&#10;### Request with custom headers&#10;GET {{baseUrl}}/api/data&#10;User-Agent: MyApp/1.0&#10;X-Custom-Header: custom-value&#10;Accept: application/json&#10;&#10;### Environment-specific requests&#10;# @name healthCheck&#10;GET {{baseUrl}}/health&#10;&#10;### Request with response handling (some clients support this)&#10;# @name createUser&#10;POST {{baseUrl}}/users&#10;Content-Type: {{contentType}}&#10;&#10;{&#10;  &quot;name&quot;: &quot;Jane Doe&quot;,&#10;  &quot;email&quot;: &quot;jane@example.com&quot;&#10;}&#10;&#10;### Using response from previous request (if supported by your client)&#10;# GET {{baseUrl}}/users/{{createUser.response.body.id}}&#10;&#10;###" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

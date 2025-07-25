@@ -1,0 +1,80 @@
+### AxumWithRust.http
+### This file contains HTTP requests for testing an Axum server built with Rust.
+
+### Variables
+@baseUrl = http://localhost:5000
+@contentType = application/json
+
+
+### GET request to root endpoint
+GET {{baseUrl}}/
+
+
+### GET request with query parameters
+GET {{baseUrl}}/users?page=1&limit=10
+
+
+### GET request with headers
+GET {{baseUrl}}/protected
+Authorization: Bearer your-token-here
+Accept: application/json
+
+
+### POST request with JSON body
+POST {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "age": 30
+}
+
+### POST request with form data
+POST {{baseUrl}}/login
+Content-Type: application/x-www-form-urlencoded
+
+username=testuser&password=testpass
+
+
+### PUT request to update resource
+PUT {{baseUrl}}/users/1
+Content-Type: {{contentType}}
+Authorization: Bearer your-token-here
+
+{
+  "name": "John Smith",
+  "email": "johnsmith@example.com",
+  "age": 31
+}
+
+### PATCH request for partial update
+PATCH {{baseUrl}}/users/1
+Content-Type: {{contentType}}
+
+{
+  "age": 32
+}
+
+### DELETE request
+DELETE {{baseUrl}}/users/1
+Authorization: Bearer your-token-here
+
+### Environment-specific requests
+# @name healthCheck
+GET {{baseUrl}}/health
+
+### Request with response handling (some clients support this)
+# @name createUser
+POST {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com"
+}
+
+### Using response from previous request (if supported by your client)
+# GET {{baseUrl}}/users/{{createUser.response.body.id}}
+
+###
