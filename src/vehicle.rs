@@ -14,6 +14,16 @@ pub struct Vehicle {
     year: u32,
 }
 
+#[derive(Debug)]
+#[derive(Serialize, Deserialize)]
+pub struct VehicleQuery {
+    id: Option<String>,
+    manufacturer: Option<String>,
+    name: Option<String>,
+    model: Option<String>,
+    year: Option<u32>,
+}
+
 // get all vehicles
 pub async fn vehicle_get_all() -> impl IntoResponse {
     // Log the request for all vehicles
@@ -49,17 +59,21 @@ pub async fn vehicle_get(Path(id): Path<String>) -> impl IntoResponse {
 }
 
 // get vehicle details by query parameter
-pub async fn vehicle_get_by_query(Query(mut v): Query<Vehicle>) -> impl IntoResponse {
+pub async fn vehicle_get_by_query(Query(v): Query<VehicleQuery>) -> impl IntoResponse {
     // If the ID is not set, assign a new UUID
-    if v.id.is_none() {
-        v.id = Some(uuid::Uuid::new_v4().to_string());
-    }
+    let query_vehicle = Vehicle {
+        id: v.id.clone().or_else(|| Some(uuid::Uuid::new_v4().to_string())),
+        manufacturer: v.manufacturer.clone().unwrap_or("Unknown".to_string()),
+        name: v.name.clone().unwrap_or("Unknown".to_string()),
+        model: v.model.clone().unwrap_or("Unknown".to_string()),
+        year: v.year.unwrap_or(2024),
+    };
     // Log the received vehicle query
     println!("Received vehicle query: {:?}", v);
-    
+
     // Here you would typically fetch the vehicle from a database or perform some action
     // For now, we just return the vehicle as is
-    (StatusCode::OK, Json(v))
+    (StatusCode::OK, Json(query_vehicle))
 }
 
 // post a new vehicle
@@ -91,8 +105,8 @@ pub async fn vehicle_put(Path(id): Path<String>, Json(mut v): Json<Vehicle>) -> 
 pub async fn vehicle_delete(Path(id): Path<String>) -> impl IntoResponse {
     // Log the received vehicle ID for deletion
     println!("Deleting vehicle with ID: {}", id);
-    
+
     // Here you would typically delete the vehicle from a database
     // For now, we just return a success response
-    (StatusCode::NO_CONTENT, format!("Vehicle with ID {} deleted successfully", id))
+    (StatusCode::NO_CONTENT, Json(format!("Vehicle with ID {} deleted successfully", id)))
 }
