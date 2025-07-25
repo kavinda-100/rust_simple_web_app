@@ -56,7 +56,7 @@ A simple REST API built with **Rust** and the **Axum** web framework for learnin
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/kavinda-100/rust_simple_web_app.git
    cd rust_simple_web_app
    ```
 
@@ -159,7 +159,7 @@ uuid = { version = "1.0", features = ["v4"] }
 
 ## 📄 License
 
-This project is available for learning porous.
+This project is available for learning purposes.
 
 ## Author
 - [Kavinda Rathnayake](https://github.com/kavinda-100)
