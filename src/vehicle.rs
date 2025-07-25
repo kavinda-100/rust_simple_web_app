@@ -14,7 +14,9 @@ pub struct Vehicle {
     year: u32,
 }
 // get the vehicle details
-pub async fn vehicle_get() -> impl IntoResponse {
+pub async fn vehicle_get(Path(id): Path<String>) -> impl IntoResponse {
+    // Log the received vehicle ID
+    println!("Received vehicle ID: {}", id);
     let vehicle = Vehicle {
         id: Some(uuid::Uuid::new_v4().to_string()),
         manufacturer: "BMW".to_string(),
@@ -48,6 +50,20 @@ pub async fn vehicle_post(Json(mut v): Json<Vehicle>) -> impl IntoResponse {
     // Here you would typically save the vehicle to a database or perform some action
     // For now, we just print it to the console
     (StatusCode::CREATED, Json(v)) // Return 201 Created with the vehicle data
+}
+
+// put a vehicle (update)
+pub async fn vehicle_put(Path(id): Path<String>, Json(mut v): Json<Vehicle>) -> impl IntoResponse {
+    // Log the received vehicle for update
+    println!("Updating vehicle: {:?}", v);
+    // Log the vehicle ID being updated
+    println!("Vehicle ID to update: {}", id);
+    // Here you would typically update the vehicle in a database
+    // For now, we just return the updated vehicle
+    if v.id.is_none() {
+        v.id = Some(uuid::Uuid::new_v4().to_string());
+    }
+    (StatusCode::OK, Json(v)) // Return 200 OK with the updated vehicle
 }
 
 // delete a vehicle

@@ -1,5 +1,5 @@
 use axum::{Router};
-use axum::routing::{delete, post, get};
+use axum::routing::{delete, post, get, put};
 mod vehicle;
 use vehicle::*;
 
@@ -9,9 +9,10 @@ async fn main() {
     // build our application with a single route
     let app = Router::new()
         .route("/", get(hello))
-        .route("/vehicle", get(vehicle_get))
+        .route("/vehicle/{id}", get(vehicle_get))
         .route("/vehicle/query", get(vehicle_get_by_query))
         .route("/vehicle", post(vehicle_post))
+        .route("/vehicle/{id}", put(vehicle_put))
         .route("/vehicle/{id}", delete(vehicle_delete));
 
     // run our app with hyper, listening globally on port 5000

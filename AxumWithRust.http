@@ -10,13 +10,24 @@
 GET {{baseUrl}}/
 
 ### GET request to fetch Vehicle data
-GET {{baseUrl}}/vehicle
+GET {{baseUrl}}/vehicle/1
 
 ### GET Vehicle data with query parameters
 GET {{baseUrl}}/vehicle/query?manufacturer=Toyota&name=Camry&model=Camry&year=2023
 
 ### POST request with JSON body
 POST {{baseUrl}}/vehicle
+Content-Type: {{contentType}}
+
+{
+  "manufacturer": "Toyota",
+  "name": "Camry",
+  "model": "Camry",
+  "year": 2023
+}
+
+### PUT request with JSON body
+PUT {{baseUrl}}/vehicle/1
 Content-Type: {{contentType}}
 
 {
